@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required, only: [:new, :create]
+
+  skip_before_action :login_required, only: %i[ new create ]
+  before_action :ensure_current_user, only: %i[ edit update ]
+
   def new
     @user = User.new
   end
@@ -34,5 +37,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:image, :name, :profile, :email, :password, :password_confirmation)
+  end
+
+  def ensure_current_user
+    unless @picture.user == current_user
+      flash[:notice]="you don't have authority"
+      redirect_to pictures_path
+    end
   end
 end

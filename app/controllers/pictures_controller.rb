@@ -1,5 +1,7 @@
 class PicturesController < ApplicationController
+
   before_action :set_picture, only: %i[ show edit update destroy ]
+  before_action :ensure_current_user, only: %i[ edit update destroy ]
 
   def index
     @pictures = Picture.all.order("created_at DESC")
@@ -53,5 +55,12 @@ class PicturesController < ApplicationController
 
   def picture_params
     params.require(:picture).permit(:image, :content, :user_id)
+  end
+
+  def ensure_current_user
+    unless @picture.user == current_user
+      flash[:notice]="you don't have authority"
+      redirect_to pictures_path
+    end
   end
 end
