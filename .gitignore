@@ -35,3 +35,8 @@
 yarn-debug.log*
 .yarn-integrity
 public/uploads
+.env
+.DS_Store
+database_yml
+vendor/bundle
+/.bundle

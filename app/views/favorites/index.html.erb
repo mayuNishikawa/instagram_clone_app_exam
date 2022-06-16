@@ -1,17 +1,23 @@
-<article class="post">
+<article>
 <% @favorites.each do |favorite| %>
-  <p><%= image_tag favorite.picture.user.image.url %></p>
-  <p><%= favorite.picture.user.name %></p>
-  <p><%= image_tag favorite.picture.image.url %></p>
-  <p><%= favorite.picture.content %></p>
-  <p><%= link_to 'Show', picture_path(favorite.picture.id) %></p>
+  <div class="post">
+    <div class="profileFlex">
+      <p><%= image_tag favorite.picture.user.image.url %></p>
+      <p><%= favorite.picture.user.name %></p>
+    </div>
+    <p><%= image_tag favorite.picture.image.url %></p>
+    <p><%= favorite.picture.content %></p>
 
-  <% unless favorite.picture.user_id == current_user.id %>
-    <% if favorite.present? %>
-      <p><%= link_to 'unlike', favorite_path(id: favorite.id), method: :delete %></p>
-    <% else %>
-      <p><%= link_to 'like', favorites_path(picture_id: favorite.picture.id), method: :post %></p>
-    <% end %>
-  <% end %>
+    <div class="menuFlex">
+      <p><%= link_to 'Show', picture_path(favorite.picture.id) %></p>
+      <% unless favorite.picture.user_id == current_user.id %>
+        <% if favorite.present? %>
+          <p><%= link_to 'unlike', favorite_path(id: favorite.id), method: :delete %></p>
+        <% else %>
+          <p><%= link_to 'like', favorites_path(picture_id: favorite.picture.id), method: :post %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 </article>

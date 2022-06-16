@@ -1,3 +1,33 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+//new
+form {
+  margin: 0 auto;
+  margin-top: 100px;
+  form .form_innerWrap {
+    width: 300px;
+    margin: 0 auto;
+    form .field {
+      margin: 10px 0 30px 50px;
+      text-align: left;
+    }
+    form .signUpButton {
+      margin: 70px 0 0 50px;
+    }
+  }
+}
+
+//show
+.myPageLinks {
+  display:flex;
+  justify-content: flex-end;
+  p {
+    padding: 10px;
+  }
+}
+.profile {
+  text-align: left;
+  padding-left: 200px;
+}

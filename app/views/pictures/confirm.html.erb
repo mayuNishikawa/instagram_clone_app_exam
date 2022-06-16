@@ -10,7 +10,7 @@
   <%= f.submit "submit" %>
 <% end %>
 
-<%= form_with(model:@picture, local: true, url: new_picture_path,method: "get") do |f| %>
+<%= form_with(model:@picture, local: true, url: new_picture_path, method: "get", class: "confirmBackButton") do |f| %>
   <%= f.hidden_field :image_cache %>
   <%= f.submit "back", name: 'back' %>
 <% end%>
