@@ -1,0 +1,16 @@
+<article class="post">
+<% @favorites.each do |favorite| %>
+  <p><%= favorite.picture.user.name %></p>
+  <p><%= favorite.picture.image %></p>
+  <p><%= favorite.picture.content %></p>
+  <p><%= link_to 'Show', picture_path(favorite.picture.id) %></p>
+
+  <% unless favorite.picture.user_id == current_user.id %>
+    <% if favorite.present? %>
+      <p><%= link_to 'unlike', favorite_path(id: favorite.id), method: :delete %></p>
+    <% else %>
+      <p><%= link_to 'like', favorites_path(picture_id: favorite.picture.id), method: :post %></p>
+    <% end %>
+  <% end %>
+<% end %>
+</article>

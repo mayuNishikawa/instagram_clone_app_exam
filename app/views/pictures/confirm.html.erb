@@ -1,0 +1,12 @@
+<h3>send as below</h3>
+
+<%= form_with(model: @picture, local: true) do |f| %>
+  <%= f.hidden_field :image %>
+  <%= f.hidden_field :content%>
+
+  <p>image: <%= @picture.image %></p>
+  <p>content: <%= @picture.content %></p>
+
+  <%= f.submit "submit" %>
+  <%= f.submit "back", name: 'back' %>
+<% end%>

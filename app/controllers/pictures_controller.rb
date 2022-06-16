@@ -1,0 +1,57 @@
+class PicturesController < ApplicationController
+  before_action :set_picture, only: %i[ show edit update destroy ]
+
+  def index
+    @pictures = Picture.all.order("created_at DESC")
+    @favorite = current_user.favorites.find_by(params[:id])
+  end
+
+  def show
+    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
+  end
+
+  def new
+    @picture = Picture.new
+  end
+
+  def edit
+  end
+
+  def create
+    @picture = current_user.pictures.build(picture_params)
+    render :new and return if params[:back]
+    if @picture.save
+      ContactMailer.contact_mail(@picture).deliver
+      redirect_to pictures_path
+    else
+      render :new
+    end
+  end
+
+  def confirm
+    @picture = current_user.pictures.build(picture_params)
+    render :new if @picture.invalid?
+  end
+
+  def update
+    if @picture.update(picture_params)
+      redirect_to picture_url(@picture)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @picture.destroy
+    redirect_to pictures_url
+  end
+
+  private
+  def set_picture
+    @picture = Picture.find(params[:id])
+  end
+
+  def picture_params
+    params.require(:picture).permit(:image, :content)
+  end
+end
