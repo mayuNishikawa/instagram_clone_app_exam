@@ -1,7 +1,8 @@
 <article class = "Post">
   <% @pictures.each do |picture| %>
+    <p><%= image_tag picture.user.image.url %></p>
     <p><%= picture.user.name %></p>
-    <p><%= picture.image %></p>
+    <p><%= image_tag picture.image.url %></p>
     <p><%= picture.content %></p>
     <p><%= link_to 'Show', picture %></p>
 

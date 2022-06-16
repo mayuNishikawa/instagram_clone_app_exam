@@ -1,12 +1,16 @@
 <h3>send as below</h3>
 
 <%= form_with(model: @picture, local: true) do |f| %>
-  <%= f.hidden_field :image %>
+  <p><%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %></p>
+  <%= f.hidden_field :image_cache %>
+
+  <p>content: <%= @picture.content %></p>
   <%= f.hidden_field :content%>
 
-  <p>image: <%= @picture.image %></p>
-  <p>content: <%= @picture.content %></p>
-
   <%= f.submit "submit" %>
+<% end %>
+
+<%= form_with(model:@picture, local: true, url: new_picture_path,method: "get") do |f| %>
+  <%= f.hidden_field :image_cache %>
   <%= f.submit "back", name: 'back' %>
 <% end%>

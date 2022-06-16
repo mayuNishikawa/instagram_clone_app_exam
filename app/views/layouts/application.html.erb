@@ -10,26 +10,31 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
     <header>
-    <% if logged_in? %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
-    <% end %>
+      <div class="innerWrap">
+        <h1>instagram</h1>
+        <div class="menu">
+          <% unless logged_in? %>
+            <%= link_to "Sign up", new_user_path %>
+            <%= link_to "Login", new_session_path %>
+          <% end %>
+        </div>
+      </div>
     </header>
-    <main>
-      <%= yield %>
-    <% if logged_in? %>
-      <nav>
-        <%= link_to 'Timeline', pictures_path %>
-        <%= link_to 'CreatePost', new_picture_path %>
-        <%= link_to "Profile", user_path(current_user.id) %>
-      </nav>
-    <% end %>
+    <main class="container">
+      <div class="innerWrap">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %>
+        <%= yield %>
+        <% if logged_in? %>
+          <nav>
+            <p><%= link_to image_tag("home_icon.png"), pictures_path %></p>
+            <p><%= link_to image_tag("post_icon.png"), new_picture_path %></p>
+            <p><%= link_to image_tag("profile_icon.png"), user_path(current_user.id) %></p>
+          </nav>
+        <% end %>
+      </div>
     </main>
   </body>
 </html>

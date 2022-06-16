@@ -1,11 +1,13 @@
 <h1>my page</h1>
 
 <% if @user.id == current_user.id %>
+  <p><%= link_to "Logout", session_path(current_user.id), method: :delete %></p>
   <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
 <% end %>
   <p><%= link_to 'Favorites', favorites_path %></p>
+  
 
-  <p><%= @user.image %></p>
+  <p><%= image_tag @user.image.url %></p>
 
   <p><%= @user.name %></p>
 

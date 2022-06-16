@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   skip_before_action :login_required, only: %i[ new create ]
+  before_action :set_user, only: %i[ show edit update ]
   before_action :ensure_current_user, only: %i[ edit update ]
 
   def new
@@ -17,15 +18,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id)
     else
@@ -35,12 +33,16 @@ class UsersController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:image, :name, :profile, :email, :password, :password_confirmation)
   end
 
   def ensure_current_user
-    unless @picture.user == current_user
+    unless @user == current_user
       flash[:notice]="you don't have authority"
       redirect_to pictures_path
     end

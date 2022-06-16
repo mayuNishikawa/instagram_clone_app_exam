@@ -13,7 +13,11 @@ class PicturesController < ApplicationController
   end
 
   def new
-    @picture = Picture.new
+    if params[:back]
+      @picture = Picture.new(picture_params)
+    else
+      @picture = Picture.new
+    end
   end
 
   def edit
@@ -54,7 +58,7 @@ class PicturesController < ApplicationController
   end
 
   def picture_params
-    params.require(:picture).permit(:image, :content, :user_id)
+    params.require(:picture).permit(:image, :image_cache, :content, :user_id)
   end
 
   def ensure_current_user

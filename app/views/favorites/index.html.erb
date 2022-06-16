@@ -1,7 +1,8 @@
 <article class="post">
 <% @favorites.each do |favorite| %>
+  <p><%= image_tag favorite.picture.user.image.url %></p>
   <p><%= favorite.picture.user.name %></p>
-  <p><%= favorite.picture.image %></p>
+  <p><%= image_tag favorite.picture.image.url %></p>
   <p><%= favorite.picture.content %></p>
   <p><%= link_to 'Show', picture_path(favorite.picture.id) %></p>
 
