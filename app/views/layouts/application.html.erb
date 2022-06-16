@@ -23,11 +23,13 @@
     </header>
     <main>
       <%= yield %>
+    <% if logged_in? %>
       <nav>
-        <%= link_to 'CreatePost', new_picture_path %>
         <%= link_to 'Timeline', pictures_path %>
+        <%= link_to 'CreatePost', new_picture_path %>
         <%= link_to "Profile", user_path(current_user.id) %>
       </nav>
+    <% end %>
     </main>
   </body>
 </html>

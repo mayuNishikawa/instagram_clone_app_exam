@@ -1,3 +1,14 @@
 <h1>my page</h1>
 
-<%= link_to 'Favorites', favorites_path %>
+<%= link_to 'Edit Profile', edit_user_path(@user) %>
+<%= link_to 'Favorites', favorites_path %><br>
+
+<%= @user.image %><br>
+
+<%= @user.name %><br>
+
+<% if @user.id == current_user.id %>
+  <%= @user.email %><br>
+<% end %>
+
+<%= @user.profile %><br>

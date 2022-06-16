@@ -1,0 +1,28 @@
+<h1>Profile</h1>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.text_area :image %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_area :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile %>
+    <%= f.text_area :profile %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_area :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
