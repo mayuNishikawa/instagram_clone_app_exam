@@ -5,6 +5,11 @@
     <p><%= picture.content %></p>
     <p><%= link_to 'Show', picture %></p>
 
+  <% if picture.user_id == current_user.id %>
+    <p><%= link_to 'edit', edit_picture_path(picture) %></p>
+    <p><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <% end %>
+
     <% unless picture.user_id == current_user.id %>
       <% if picture.favorites.present? %>
         <p><%= link_to 'unlike', favorite_path(id: @favorite.id), method: :delete %></p>
@@ -14,4 +19,3 @@
     <% end %>
   <% end %>
 </article>
-<%= link_to 'New Picture', new_picture_path %>

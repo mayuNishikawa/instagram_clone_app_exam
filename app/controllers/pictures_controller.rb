@@ -35,7 +35,7 @@ class PicturesController < ApplicationController
 
   def update
     if @picture.update(picture_params)
-      redirect_to picture_url(@picture)
+      redirect_to pictures_url
     else
       render :edit
     end
@@ -52,6 +52,6 @@ class PicturesController < ApplicationController
   end
 
   def picture_params
-    params.require(:picture).permit(:image, :content)
+    params.require(:picture).permit(:image, :content, :user_id)
   end
 end
