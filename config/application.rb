@@ -14,6 +14,8 @@ module InstagramCloneApp
     config.i18n.default_locale = :ja
     config.load_defaults 6.0
 
+    config.action_mailer.asset_host = 'http://example.com'
+
     config.generators do |g|
       g.assets false
       g.helper false

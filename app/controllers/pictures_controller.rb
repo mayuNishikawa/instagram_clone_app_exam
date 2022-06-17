@@ -53,6 +53,7 @@ class PicturesController < ApplicationController
   end
 
   private
+  
   def set_picture
     @picture = Picture.find(params[:id])
   end

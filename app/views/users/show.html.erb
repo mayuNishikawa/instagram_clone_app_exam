@@ -11,3 +11,25 @@
   <p><%= @user.name %></p>
   <p><%= @user.profile %></p>
 </div>
+
+<article class="myPosts">
+  <% @user.pictures.each do |picture| %>
+    <div class="post">
+      <div class="profileFlex">
+        <p><%= image_tag picture.user.image.url %></p>
+        <p><%= picture.user.name %></p>
+      </div>
+      <p><%= image_tag picture.image.url %></p>
+      <p><%= picture.content %></p>
+
+      <div class="menuFlex">
+        <p><%=link_to 'show', picture %></p>
+      <% if picture.user_id == current_user.id %>
+        <p><%= link_to 'edit', edit_picture_path(picture) %></p>
+        <p><%= link_to 'destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      <% end %>
+        <p></p>
+      </div>
+    </div>
+  <% end %>
+</article>
