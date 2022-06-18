@@ -3,7 +3,7 @@
 </p>
 
 <p>
-  <%= image_tag @picture.image.url %>
+  <%= image_tag @picture.image.url if @picture.image.present? %>
 </p>
 
 <p>

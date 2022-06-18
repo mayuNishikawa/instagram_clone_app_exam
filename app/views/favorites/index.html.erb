@@ -2,10 +2,10 @@
 <% @favorites.each do |favorite| %>
   <div class="post">
     <div class="profileFlex">
-      <p><%= image_tag favorite.picture.user.image.url %></p>
+      <p><%= image_tag favorite.picture.user.image.url if favorite.picture.user.image.present? %></p>
       <p><%= favorite.picture.user.name %></p>
     </div>
-    <p><%= image_tag favorite.picture.image.url %></p>
+    <p><%= image_tag favorite.picture.image.url if favorite.picture.image.present? %></p>
     <p><%= favorite.picture.content %></p>
 
     <div class="menuFlex">
