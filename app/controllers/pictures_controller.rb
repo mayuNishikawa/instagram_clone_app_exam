@@ -4,7 +4,7 @@ class PicturesController < ApplicationController
   before_action :ensure_current_user, only: %i[ edit update destroy ]
 
   def index
-    @pictures = Picture.all.order("created_at DESC")
+    @pictures = Picture.all.order("created_at DESC").where.not(image: nil)
     @favorite = current_user.favorites.find_by(params[:id])
   end
 

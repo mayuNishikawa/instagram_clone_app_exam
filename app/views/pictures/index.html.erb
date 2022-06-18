@@ -2,10 +2,10 @@
   <% @pictures.each do |picture| %>
     <div class="post">
       <div class="profileFlex">
-        <p><%= image_tag picture.user.image.url %></p>
+        <p><%= image_tag picture.user.image.url if picture.user.image.present? %></p>
         <p><%= picture.user.name %></p>
       </div>
-      <p><%= image_tag picture.image.url %></p>
+      <p><%= image_tag picture.image.url if picture.image.present? %></p>
       <p><%= picture.content %></p>
 
       <div class="menuFlex">
