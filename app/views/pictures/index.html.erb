@@ -10,15 +10,15 @@
 
       <div class="menuFlex">
           <p><%= link_to 'Show', picture %></p>
-        <% if picture.user_id == current_user.id && picture.image.present? %>
-          <p><%= link_to 'edit', edit_picture_path(picture) %></p>
-          <p><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-        <% end %>
-        <% if picture.user_id != current_user.id && picture.image.present? %>
-          <% if picture.favorites.present? %>
-            <p><%= link_to 'unlike', favorite_path(id: @favorite.id), method: :delete %></p>
-          <% else %>
-            <p><%= link_to 'like', favorites_path(picture_id: picture.id), method: :post %></p>
+        <% if picture.image.present? %>
+          <% unless picture.user_id == current_user.id %>
+            <p><%= link_to 'edit', edit_picture_path(picture) %></p>
+            <p><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+            <% if picture.favorites.present? %>
+              <p><%= link_to 'unlike', favorite_path(id: @favorite.id), method: :delete %></p>
+            <% else %>
+              <p><%= link_to 'like', favorites_path(picture_id: picture.id), method: :post %></p>
+            <% end %>
           <% end %>
         <% end %>
       </div>
